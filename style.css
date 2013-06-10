@@ -1,0 +1,145 @@
+#watchDisplay {
+  margin-top: 100px;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+  font-family: 'Roboto';
+  font-size: 85px;
+}
+
+body {
+/* background-image:url('http://www.gautam.cc/images/handmadepaper.png'); */
+background-color: black;
+color: white;
+text-align:center;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+  padding:0;
+  margin:0;
+}
+
+#watchWrapper {
+  margin-top: 20px;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+  height: 300px;
+  width: 300px;
+  background-color: transp;
+  border: 3px solid red;
+  border-radius: 150px;
+  box-shadow: 0 7px 25px #000;
+-moz-box-shadow: 0 7px 25px #000;
+-o-box-shadow: 0 7px 25px #000;
+ /* Animations */
+animation-name:changecolor;
+animation-duration:10s;
+animation-timing-function:linear;
+animation-delay:1s;
+animation-iteration-count:infinite;
+animation-direction:normal;
+animation-play-state:running;
+/* Safari and Chrome: */
+-webkit-animation-name:changecolor;
+-webkit-animation-duration:10s;
+-webkit-animation-timing-function:linear;
+-webkit-animation-delay:1s;
+-webkit-animation-iteration-count:infinite;
+-webkit-animation-direction:normal;
+-webkit-animation-play-state:running;
+}
+
+#dispSpacing {
+  height: 25px;
+}
+
+#startStop {
+  font-size: 25px;
+  font-family: 'Roboto';
+  text-align:center;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#minutes {
+  
+}
+
+.nums {
+  margin-bottom: 14px;
+  display: inline-block;
+}
+
+#title {
+display: inline-block;
+font-size: 50px;
+margin-top: 30px;
+font-family: 'Roboto';
+font-weight: 900;
+}
+
+#seconds {
+font-family: 'Roboto';
+font-weight: 100;
+}
+
+#tenthseconds {
+font-family: 'Roboto';
+font-weight: 100;
+margin-bottom: 0px;
+font-size: 30px;
+}
+
+#less {
+font-weight: 100;
+}
+
+#lapBox {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 6px;
+  font-family: 'Roboto';
+  overflow:scroll; 
+  height:35px;
+  width: 270px;
+  /* border: 1px solid red;
+  border-radius: 4px; */
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+  color: grey;
+}
+
+#lapnums {
+display: inline-block;
+}
+
+#lapSpacing {
+height: 100px;
+}
+
+/* watchWrapper Animations */
+@keyframes changecolor
+{
+0%   {border: 3px solid red;}
+20%  {border: 3px solid orange;}
+40%  {border: 3px solid yellow;}
+60%  {border: 3px solid green;}
+80%  {border: 3px solid blue;}
+100% {border: 3px solid red;}
+}
+
+@-webkit-keyframes changecolor /* Safari and Chrome */
+{
+0%   {border: 3px solid	red;}
+20%   {border: 3px solid orange;}
+40%  {border: 3px solid yellow;}
+60%  {border: 3px solid green;}
+80%  {border: 3px solid blue;}
+100% {border: 3px solid red;}
+}
