@@ -129,13 +129,28 @@ updateDisplay();
 
 
 function checkScreenMode() {
+//    if (running === false) {
+//        running = false;
+//    } else if (running === true) {
+//        running = true;
+//    }
+    
+//    init();
+    
     if (fullScreenMode == true) {
+        if ($(window).height() == 568) {
         $("#displayArea").css("height", 568);
+        } else {
+          $("#displayArea").css("height", 480);
+        }
         $("#watchDisplay").css("margin-top", "40%");
+        $("#lapBox").remove();
+        $("#settingsAccessLabel").remove();
         
     } else {
         $("#displayArea").css("height", "55%");
         $("#watchDisplay").css("margin-top", 45);
+        $("body").append("<div id=\"lapBox\"></div><div id=\"settingsAccessLabel\">swipe up to enter full screen mode</div>");
     }
 }
 
