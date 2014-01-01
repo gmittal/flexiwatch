@@ -18,6 +18,10 @@ var lapTenth1 = 0;
 var lapMin = 0;
 var lapSec = 0;
 var lapTenth = 0;
+var fullScreenMode = false;
+
+var lapMinData = new Array();
+var lapSecondData = new Array();
 
 function init() {                       // INIT
   if (running === true) {  
@@ -53,12 +57,18 @@ $(document).bind('click', function() {
          document.removeEventListener('touchstart', touchInput, false);
          running = true;
           
-          if (direction == "up") {
-            resetStopwatch();
+          if (direction == "up" && fingerCount == 1) {
+                        if (fullScreenMode === false) {
+                        fullScreenMode = true;
+                        } else if (fullScreenMode === true) {
+                        fullScreenMode = false;
+                        }
+                        checkScreenMode();
+//                resetStopwatch();
             document.addEventListener('touchstart', touchInput, false);
           } // end direction up if
 
-          if (direction == "down") {
+          if (direction == "down" && fingerCount == 1) {
             resetStopwatch();
             document.addEventListener('touchstart', touchInput, false);
           } // end direction down if
@@ -91,6 +101,7 @@ $(document).bind('click', function() {
             }
           } // end direction left if
           
+        
           
         },
         //Default is 75px, set to 0 for demo so any distance triggers swipe
@@ -109,12 +120,24 @@ $(document).bind('click', function() {
 
 
 $(document).ready(function() {
-checkMobile();
-  $("body").append("<div id=\"title\">stop<span id=\"less\">watch</span></div><br /><div id=\"watchWrapper\"><div id=\"dispSpacing\"></div><div id=\"watchDisplay\"></div><div id=\"startStop\"></div></div><br /><div id=\"lapBox\"></div>");
+  checkMobile();
+  $("body").append("<div id=\"displayArea\"><div id=\"watchDisplay\"></div><div id=\"startStop\"></div><br /></div><br /><div id=\"lapBox\"></div><div id=\"settingsAccessLabel\">swipe up to enter full screen mode</div>");
 checkZero();
 displayStartFactor();
 updateDisplay();
 });
+
+
+function checkScreenMode() {
+    if (fullScreenMode == true) {
+        $("#displayArea").css("height", 568);
+        $("#watchDisplay").css("margin-top", "40%");
+        
+    } else {
+        $("#displayArea").css("height", "55%");
+        $("#watchDisplay").css("margin-top", 45);
+    }
+}
 
 
 function tick() {
@@ -148,12 +171,12 @@ function displayStartFactor() {
 
 
 function checkZero() {
-if (seconds < 10) {
+if (seconds <= 9) {
     seconds = "0" + countSec;
   } else {
     seconds = countSec;
   } 
-  if (minutes < 10) {
+  if (minutes <= 9) {
     minutes = "0" + countMin;
   } else {
     minutes = countMin;
@@ -190,7 +213,40 @@ function lapStopwatch() {
     lapSec1 = lapSec;
     lapTenth1 = lapTenth;
   } */
-  $("#lapBox").prepend("LAP " + numLaps + ": <span class=\"lapnums\">" + minutes + ":" + seconds + "." + tenthseconds + "</span><br /><br />");
+    lapMinData[numLaps-1] = minutes;
+    lapSecondData[numLaps-1] = seconds;
+   
+    if (numLaps == 1) {
+        $("#lapBox").prepend("<b>LAP </b>" + numLaps + " &nbsp; &nbsp; &nbsp; &nbsp; <span class=\"lapnums\">" + minutes + ":" + seconds + "</span><br />");
+    } else {
+        var minPast;
+        if (lapMinData[numLaps-2] > minutes) {
+            minPast = (minutes + 60) - lapMinData[numLaps-2];
+        } else {
+            minPast = minutes - lapMinData[numLaps-2];
+        }
+        if (minPast > 9) {
+            minPast = minPast;
+        } else {
+            minPast = "0" + minPast;
+        }
+        
+        var secPast;
+        if (lapSecondData[numLaps-2] > seconds) {
+            secPast = (seconds + 60) - lapSecondData[numLaps-2];
+        } else {
+            secPast = seconds - lapSecondData[numLaps-2];
+        }
+        
+        
+        if (secPast > 9) {
+            secPast = secPast;
+        } else {
+            secPast = "0" + secPast;
+        }
+        
+        $("#lapBox").prepend("<b>LAP </b>" + numLaps + " &nbsp; &nbsp; &nbsp; &nbsp; <span class=\"lapnums\">" + minPast + ":" + secPast + "</span><br />");
+    }
 }
 
 function clearLaps() {
@@ -203,5 +259,6 @@ function displaySettings() {
 } 
 
 function updateDisplay() {
-  $("#watchDisplay").html("<div class=\"nums\" id=\"minutes\"><b>" + minutes + "</b></div>:<div class=\"nums\" id=\"seconds\">" + seconds + "</div>.<div class=\"nums\" id=\"tenthseconds\">" + tenthseconds + "</div>");
+  $("#watchDisplay").html("<div class=\"nums\" id=\"minutes\"><b>" + minutes + "</b></div>:<div class=\"nums\" id=\"seconds\">" + seconds + "</div>");
 }
+
