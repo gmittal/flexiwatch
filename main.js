@@ -121,7 +121,7 @@ $(document).bind('click', function() {
 
 $(document).ready(function() {
   checkMobile();
-  $("body").append("<div id=\"displayArea\"><div id=\"watchDisplay\"></div><div id=\"startStop\"></div><br /></div><br /><div id=\"lapBox\"></div><div id=\"settingsAccessLabel\">swipe up to enter full screen mode</div>");
+  $("body").append("<div id=\"displayArea\"><div id=\"watchDisplay\"></div><div id=\"startStop\"></div><br /></div><br /><br /><b style=\"font-size: 30px; font-weight:800;\">LAPS</b><div id=\"lapBox\"><span style=\"font-family:'Raleway'; font-size: 15px; color:black; \">swipe to left/right to lap</span></div><div id=\"settingsAccessLabel\">swipe up to enter full screen mode</div>");
 checkZero();
 displayStartFactor();
 updateDisplay();
@@ -144,13 +144,15 @@ function checkScreenMode() {
           $("#displayArea").css("height", 480);
         }
         $("#watchDisplay").css("margin-top", "40%");
-        $("#lapBox").remove();
-        $("#settingsAccessLabel").remove();
+        $("#lapBox").hide();
+        $("#settingsAccessLabel").hide();
         
     } else {
         $("#displayArea").css("height", "55%");
         $("#watchDisplay").css("margin-top", 45);
-        $("body").append("<div id=\"lapBox\"></div><div id=\"settingsAccessLabel\">swipe up to enter full screen mode</div>");
+        $("#lapBox").show();
+        $("#settingsAccessLabel").show();
+//        $("body").append("<div id=\"lapBox\"></div><div id=\"settingsAccessLabel\">swipe up to enter full screen mode</div>");
     }
 }
 
@@ -228,31 +230,38 @@ function lapStopwatch() {
     lapSec1 = lapSec;
     lapTenth1 = lapTenth;
   } */
-    lapMinData[numLaps-1] = minutes;
-    lapSecondData[numLaps-1] = seconds;
+//    lapMinData[numLaps-1] = minutes;
+    lapSecondData[numLaps-1] = (minutes * 60) + seconds;
    
     if (numLaps == 1) {
         $("#lapBox").prepend("<b>LAP </b>" + numLaps + " &nbsp; &nbsp; &nbsp; &nbsp; <span class=\"lapnums\">" + minutes + ":" + seconds + "</span><br />");
     } else {
+        
+        
         var minPast;
-        if (lapMinData[numLaps-2] > minutes) {
-            minPast = (minutes + 60) - lapMinData[numLaps-2];
-        } else {
-            minPast = minutes - lapMinData[numLaps-2];
-        }
+//        if (lapMinData[numLaps-2] > minutes) {
+//            minPast = (minutes + 60) - lapMinData[numLaps-2];
+//        } else {
+//            minPast = minutes - lapMinData[numLaps-2];
+//        }
+//
+//        
+        var secPast;
+//        if (lapSecondData[numLaps-2] > seconds) {
+//            secPast = (seconds + 60) - lapSecondData[numLaps-2];
+//        } else {
+//            secPast = seconds - lapSecondData[numLaps-2];
+//        }
+        
+        timePast = ((minutes * 60) + seconds) - lapSecondData[numLaps - 2];
+        minPast = Math.round(timePast/60);
+        secPast = timePast % 60;
+        
         if (minPast > 9) {
             minPast = minPast;
         } else {
             minPast = "0" + minPast;
         }
-        
-        var secPast;
-        if (lapSecondData[numLaps-2] > seconds) {
-            secPast = (seconds + 60) - lapSecondData[numLaps-2];
-        } else {
-            secPast = seconds - lapSecondData[numLaps-2];
-        }
-        
         
         if (secPast > 9) {
             secPast = secPast;
