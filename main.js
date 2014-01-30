@@ -74,17 +74,22 @@ $(document).bind('click', function() {
           } // end direction down if
           
           if (direction == "right") {
-            running = false;
-            if (running === false) {
-            init();
-            displayStartFactor();
-            lapStopwatch();
-            running = true;
-            init();
-            document.addEventListener('touchstart', touchInput, false);
-            } else {
+//            running = false;
+//            if (running === false) {
+//            init();
+//            displayStartFactor();
+//            lapStopwatch();
+//            running = true;
+//            init();
+//            document.addEventListener('touchstart', touchInput, false);
             
-            }
+                        setTimeout(function() {location.href = "index.html"}, 300);
+                        $("body").fadeOut();
+            
+            
+//            } else {
+            
+//            }
            } // end direction right if
           
           if (direction == "left") {
@@ -121,7 +126,7 @@ $(document).bind('click', function() {
 
 $(document).ready(function() {
   checkMobile();
-  $("body").append("<div id=\"displayArea\"><div id=\"watchDisplay\"></div><div id=\"startStop\"></div><br /></div><br /><br /><b style=\"font-size: 30px; font-weight:800;\">LAPS</b><div id=\"lapBox\"><span style=\"font-family:'Raleway'; font-size: 15px; color:black; \">swipe to left/right to lap</span></div><div id=\"settingsAccessLabel\">swipe up to enter full screen mode</div>");
+  $("body").append("<div id=\"displayArea\"><div id=\"watchDisplay\"></div><div id=\"startStop\"></div><br /></div><br /><br /><div id=\"lapBox\"><span style=\"font-family:'Raleway'; font-size: 15px; color:white; \">tap anywhere to start/stop<br />swipe to left to lap<br />swipe right to exit to menu<br />swipe down to reset</span></div><div id=\"settingsAccessLabel\">swipe up to enter full screen mode</div>");
 checkZero();
 displayStartFactor();
 updateDisplay();
@@ -159,6 +164,7 @@ function checkScreenMode() {
 
 function tick() {
   tenthseconds++;
+    
   if (tenthseconds > 9) {
     tenthseconds = 0;
     countSec++;
@@ -167,6 +173,7 @@ function tick() {
     countSec = 0;
     countMin++;
   }
+    
   checkZero();  
   displayStartFactor();
   updateDisplay();
@@ -188,11 +195,18 @@ function displayStartFactor() {
 
 
 function checkZero() {
-if (seconds <= 9) {
+//    if (seconds == 10) {
+//        $("#watchDisplay").html("<div class=\"nums\" id=\"minutes\"><b>" + minutes + "</b></div>:<div class=\"nums\" id=\"seconds\">" + 10 + "</div>");
+//    }
+    
+    if (seconds <= 9) {
     seconds = "0" + countSec;
   } else {
     seconds = countSec;
-  } 
+  }
+   
+    
+    
   if (minutes <= 9) {
     minutes = "0" + countMin;
   } else {
@@ -283,6 +297,6 @@ function displaySettings() {
 } 
 
 function updateDisplay() {
-  $("#watchDisplay").html("<div class=\"nums\" id=\"minutes\"><b>" + minutes + "</b></div>:<div class=\"nums\" id=\"seconds\">" + seconds + "</div>");
+  $("#watchDisplay").html("<div class=\"nums\" id=\"minutes\"><b>" + minutes + "</b></div> <div class=\"nums\" id=\"seconds\">" + seconds + "</div>");
 }
 

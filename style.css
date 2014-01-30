@@ -88,7 +88,8 @@
 }
 
 body {
-/* background-image:url('http://www.gautam.cc/images/handmadepaper.png'); */
+background-image:url('mountain.png');
+background-size: 100%;
 background-color: #ecf0f1;
 color: black;
 text-align:center;
@@ -100,8 +101,30 @@ text-align:center;
 user-select: none;
   padding:0;
   margin:0;
-  overflow:none;
+  overflow:hidden;
   width:100%;
+  
+}
+
+ @media only screen and (max-device-height: 480px) {
+    body {
+        background-image:url('mountain.png');
+        background-size: 100%;
+        background-color: #ecf0f1;
+        color: black;
+        text-align:center;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        padding:0;
+        margin:0;
+        overflow:hidden;
+        width:100%;
+        
+    }
 }
 
 #watchWrapper {
@@ -165,7 +188,7 @@ animation-play-state:running;
     color:white;
     width:100%;
     height:55%;
-    background-color:#1abc9c;
+    background-color:transp; /* #1abc9c; */
     border-bottom-left-radius:3px;
     border-bottom-right-radius:3px;
     -webkit-transition: all 0.2s linear;
@@ -191,7 +214,7 @@ font-weight: 100;
 }
 
 #lapBox {
-    margin-top: 20px;
+    margin-top: 10px;
   font-size: 30px;
   font-weight: Light;
   padding: 6px;
@@ -218,9 +241,87 @@ height: 100px;
 }
 
 #settingsAccessLabel {
-    margin-top:40px;
+    margin-top:30px;
     font-weight:400;
     font-family: 'Raleway';
+    color: white;
+}
+
+.homeButtonLarge {
+    height: 100px;
+    width: 100px;
+    background-color:transp;
+    border-radius: 50%;
+    border: 1px solid white;
+    text-align: center;
+    color:white;
+    font-size: 25px;
+    font-family: 'Roboto';
+    font-weight: 300;
+    line-height: 100px;
+    display:inline-block;
+    margin-top: 30%;
+}
+
+.homeButtonMed {
+    height: 60px;
+    width: 60px;
+    background-color:transp;
+    border-radius: 50%;
+    border: 1px solid white;
+    text-align: center;
+    color:white;
+    font-size: 13px;
+    font-family: 'Roboto';
+    font-weight: 300;
+    line-height: 60px;
+    display:inline-block;
+    margin-top: -10px;
+    position:absolute;
+    bottom: 10px;
+    right: 10px;
+    
+    
+    
+}
+
+#themes {
+    width:100%;
+    height:100%;
+}
+
+.theme {
+    
+}
+
+#theme1 {
+    /* background-image:url('space.png');
+     height: 240px;
+     width:180px; */
+}
+
+#theme2 {
+    /* background-image:url('space.png');
+     height: 240px;
+     width:180px; */
+}
+
+#theme3 {
+    /* background-image:url('space.png');
+     height: 240px;
+     width:180px; */
+}
+
+#theme4 {
+    /* background-image:url('space.png');
+    height: 240px;
+    width:180px; */
+}
+
+.themeTile {
+    margin-top: 25%;
+    width:70px;
+    border-radius: 6px;
 }
 
 
