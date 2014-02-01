@@ -45,11 +45,9 @@ function touchInput() {
 function checkMobile() {
 document.addEventListener('touchstart', touchInput, false);
 event.preventDefault();
-if ($(document).width() > 500) {
 $(document).bind('click', function() {
   touchInput();  
 });
-} //end if
   
    $(function() {      
       $(document).swipe( {
@@ -57,7 +55,7 @@ $(document).bind('click', function() {
          document.removeEventListener('touchstart', touchInput, false);
          running = true;
           
-          if (direction == "up" && fingerCount == 1) {
+          if (direction == "up") {
                         if (fullScreenMode === false) {
                         fullScreenMode = true;
                         } else if (fullScreenMode === true) {
@@ -68,28 +66,21 @@ $(document).bind('click', function() {
             document.addEventListener('touchstart', touchInput, false);
           } // end direction up if
 
-          if (direction == "down" && fingerCount == 1) {
+          if (direction == "down") {
             resetStopwatch();
             document.addEventListener('touchstart', touchInput, false);
           } // end direction down if
           
           if (direction == "right") {
-//            running = false;
-//            if (running === false) {
-//            init();
-//            displayStartFactor();
-//            lapStopwatch();
-//            running = true;
-//            init();
-//            document.addEventListener('touchstart', touchInput, false);
-            
-                        setTimeout(function() {location.href = "index.html"}, 300);
-                        $("body").fadeOut();
-            
-            
-//            } else {
-            
-//            }
+            running = false;
+            if (running === false) {
+            	init();
+            	displayStartFactor();
+            	lapStopwatch();
+            	running = true;
+            	init();
+            	document.addEventListener('touchstart', touchInput, false);
+            }
            } // end direction right if
           
           if (direction == "left") {
@@ -126,7 +117,7 @@ $(document).bind('click', function() {
 
 $(document).ready(function() {
   checkMobile();
-  $("body").append("<div id=\"displayArea\"><div id=\"watchDisplay\"></div><div id=\"startStop\"></div><br /></div><br /><br /><div id=\"lapBox\"><span style=\"font-family:'Raleway'; font-size: 15px; color:white; \">tap anywhere to start/stop<br />swipe to left to lap<br />swipe right to exit to menu<br />swipe down to reset</span></div><div id=\"settingsAccessLabel\">swipe up to enter full screen mode</div>");
+  $("body").append("<div id=\"displayArea\"><div id=\"watchDisplay\"></div><div id=\"startStop\"></div><br /></div><br /><br /><div id=\"lapBox\"><span style=\"font-family:'Raleway'; font-size: 15px; color:white; \">tap anywhere to start/stop<br />swipe left or right to lap<br />swipe down to reset</span></div><div id=\"settingsAccessLabel\">swipe up to enter full screen mode</div>");
 checkZero();
 displayStartFactor();
 updateDisplay();
@@ -288,7 +279,9 @@ function lapStopwatch() {
 }
 
 function clearLaps() {
-  $("#lapBox").html(""); 
+  $("#lapBox").html("");
+  $("#lapBox").append("<span style=\"font-family:'Raleway'; font-size: 15px; color:white; \">tap anywhere to start/stop<br />swipe left or right to lap<br />swipe down to reset</span>");
+ 
   numLaps = 0;
 }
 
