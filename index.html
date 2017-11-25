@@ -79,7 +79,7 @@
             <p><strong>It's also cross-platform! Open this page up on a mobile device!<br />Optimal performance on mobile devices.</strong></p>
             <hr />
             <div id="appWrapper">
-                <iframe id="contentFrame" src="/phonegap/www/watch.html">Loading...</iframe>
+                <iframe id="contentFrame" src="phonegap/www/watch.html">Loading...</iframe>
             </div>
 
             <br />
@@ -107,8 +107,8 @@
         $(document).ready(function() {
             if ($(window).width() < 768) {
                 // $("#appWrapper").remove();
-                location.href = "/phonegap/www/watch.html";
-                $("body").html("<iframe id=\"contentFrame\" src=\"http://www.gautam.cc/flexiwatch/phonegap/www/watch.html\">Loading...</iframe>");
+                location.href = "phonegap/www/watch.html";
+                $("body").html("<iframe id=\"contentFrame\" src=\"phonegap/www/watch.html\">Loading...</iframe>");
 
             }
         });
